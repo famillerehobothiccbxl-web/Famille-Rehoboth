@@ -5,95 +5,160 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Famille Rehoboth-Suivi</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: Arial, sans-serif;
-      background: #f1f5f9;
-      color: #183153;
-    }
-    header {
-      background: #123b78;
-      color: white;
-      padding: 25px;
-      text-align: center;
-    }
-    main {
-      max-width: 950px;
-      margin: 30px auto;
+      background: #f1f4f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 20px;
     }
-    .welcome {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-    }
-    .card {
+
+    .container {
+      width: 100%;
+      max-width: 420px;
       background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px #00000012;
+      padding: 35px 28px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
       text-align: center;
     }
-    .card h3 { color: #174a91; }
-    .card p { color: #64748b; }
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #64748b;
+
+    .logo {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      color: #173b65;
+      font-size: 24px;
+      margin: 0 0 8px;
+    }
+
+    .subtitle {
+      color: #667085;
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .field {
+      text-align: left;
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: #344054;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    input:focus {
+      outline: 2px solid #8bb7e8;
+      border-color: #2867a5;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #173b65;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #245486;
+    }
+
+    #loginMessage {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #b42318;
+      min-height: 20px;
+    }
+
+    .footer {
+      margin-top: 28px;
+      color: #98a2b3;
+      font-size: 12px;
     }
   </style>
 </head>
+
 <body>
-  <header>
+
+  <main class="container">
+    <div class="logo">🏠</div>
+
     <h1>FAMILLE REHOBOTH</h1>
-    <p>Suivi • Participation • Engagement</p>
-    <small>ICC BRUXELLES</small>
-  </header>
 
-  <main>
-    <div class="welcome">
-      <h2>Bienvenue sur Famille Rehoboth-Suivi</h2>
-      <p>Plateforme de suivi et de reporting de la famille.</p>
-    </div>
+    <p class="subtitle">
+      Suivi • Participation • Engagement
+    </p>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Gestion des membres</h3>
-        <p>Consulter et suivre les membres.</p>
+    <form id="loginForm">
+
+      <div class="field">
+        <label for="username">Identifiant</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Votre identifiant"
+          autocomplete="username"
+          required
+        >
       </div>
-      <div class="card">
-        <h3>Suivi des référents</h3>
-        <p>Gérer les encodages et les suivis.</p>
+
+      <div class="field">
+        <label for="password">Mot de passe</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Votre mot de passe"
+          autocomplete="current-password"
+          required
+        >
       </div>
-      <div class="card">
-        <h3>Vrais disciples</h3>
-        <p>Suivre les disciples de la famille.</p>
-      </div>
-      <div class="card">
-        <h3>Présences aux cultes</h3>
-        <p>Suivre la participation.</p>
-      </div>
-      <div class="card">
-        <h3>Activités spirituelles</h3>
-        <p>Suivre les activités de la famille.</p>
-      </div>
-      <div class="card">
-        <h3>Reporting</h3>
-        <p>Préparer le rapport hebdomadaire.</p>
-      </div>
+
+      <button type="submit" id="loginButton">
+        Se connecter
+      </button>
+
+      <p id="loginMessage" role="alert"></p>
+
+    </form>
+
+    <div class="footer">
+      ICC Bruxelles • Famille Rehoboth
     </div>
   </main>
 
-  <footer>
-    ICC Bruxelles • Famille Rehoboth
-  </footer>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js"></script>
-<script src="app.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+
 </body>
 </html>
