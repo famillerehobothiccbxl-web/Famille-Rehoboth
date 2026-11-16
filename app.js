@@ -7,7 +7,7 @@ const supabaseClient = window.supabase.createClient(
 async function verifierConnexion() {
   const { data, error } = await supabaseClient
     .from("profiles")
-    .select("id")
+    .select("id, username, full_name, role, is_active")
     .limit(1);
 
   if (error) {
@@ -16,6 +16,7 @@ async function verifierConnexion() {
   }
 
   console.log("Connexion Supabase réussie !");
+  console.log("Comptes disponibles :", data);
 }
 
 verifierConnexion();
