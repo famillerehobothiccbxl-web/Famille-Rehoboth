@@ -7,9 +7,7 @@
   <title>Famille Rehoboth-Suivi</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -17,49 +15,70 @@
       font-family: Arial, sans-serif;
       background: #f1f4f9;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 20px;
     }
 
     .container {
       width: 100%;
-      max-width: 420px;
+      max-width: 440px;
       background: white;
-      padding: 35px 28px;
+      padding: 32px 26px;
       border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,.08);
     }
 
     .logo {
+      text-align: center;
       font-size: 38px;
-      margin-bottom: 12px;
     }
 
     h1 {
+      text-align: center;
       color: #173b65;
       font-size: 24px;
-      margin: 0 0 8px;
+      margin-bottom: 8px;
     }
 
     .subtitle {
+      text-align: center;
       color: #667085;
       font-size: 14px;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
 
-    .field {
-      text-align: left;
-      margin-bottom: 18px;
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
     }
+
+    .tabs button {
+      flex: 1;
+      padding: 12px 6px;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      background: white;
+      color: #344054;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .tabs button.active {
+      background: #173b65;
+      color: white;
+      border-color: #173b65;
+    }
+
+    .field { margin-bottom: 17px; }
 
     label {
       display: block;
+      font-size: 14px;
       font-weight: bold;
       color: #344054;
       margin-bottom: 7px;
-      font-size: 14px;
     }
 
     input {
@@ -70,12 +89,7 @@
       font-size: 16px;
     }
 
-    input:focus {
-      outline: 2px solid #8bb7e8;
-      border-color: #2867a5;
-    }
-
-    button {
+    .submit {
       width: 100%;
       padding: 14px;
       border: none;
@@ -87,69 +101,106 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background: #245486;
+    .submit:disabled {
+      opacity: .6;
+      cursor: wait;
     }
 
-    #loginMessage {
-      margin-top: 16px;
-      font-size: 14px;
-      color: #b42318;
+    .message {
       min-height: 20px;
+      margin-top: 15px;
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.5;
     }
 
     .footer {
-      margin-top: 28px;
+      text-align: center;
       color: #98a2b3;
       font-size: 12px;
+      margin-top: 25px;
     }
+
+    .hidden { display: none; }
   </style>
 </head>
 
 <body>
-
   <main class="container">
     <div class="logo">🏠</div>
 
     <h1>FAMILLE REHOBOTH</h1>
 
-    <p class="subtitle">
-      Suivi • Participation • Engagement
-    </p>
+    <p class="subtitle">Suivi • Participation • Engagement</p>
+
+    <div class="tabs">
+      <button type="button" id="loginTab" class="active">
+        Connexion
+      </button>
+      <button type="button" id="signupTab">
+        Créer mon compte
+      </button>
+    </div>
 
     <form id="loginForm">
-
       <div class="field">
         <label for="username">Identifiant</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
+        <input id="username" type="text"
           placeholder="Votre identifiant"
-          autocomplete="username"
-          required
-        >
+          autocomplete="username" required>
       </div>
 
       <div class="field">
         <label for="password">Mot de passe</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
+        <input id="password" type="password"
           placeholder="Votre mot de passe"
-          autocomplete="current-password"
-          required
-        >
+          autocomplete="current-password" required>
       </div>
 
-      <button type="submit" id="loginButton">
+      <button class="submit" type="submit" id="loginButton">
         Se connecter
       </button>
-
-      <p id="loginMessage" role="alert"></p>
-
     </form>
+
+    <form id="signupForm" class="hidden">
+      <div class="field">
+        <label for="signupFullname">Nom et prénom</label>
+        <input id="signupFullname" type="text"
+          placeholder="Votre nom complet" required>
+      </div>
+
+      <div class="field">
+        <label for="signupUsername">Identifiant souhaité</label>
+        <input id="signupUsername" type="text"
+          placeholder="Exemple : jean.dupont"
+          autocomplete="username"
+          pattern="[a-zA-Z0-9._-]+"
+          title="Lettres sans accents, chiffres, points, tirets ou tirets bas"
+          required>
+      </div>
+
+      <div class="field">
+        <label for="signupPassword">Créer un mot de passe</label>
+        <input id="signupPassword" type="password"
+          placeholder="8 caractères minimum"
+          autocomplete="new-password"
+          minlength="8" required>
+      </div>
+
+      <div class="field">
+        <label for="confirmPassword">Confirmer le mot de passe</label>
+        <input id="confirmPassword" type="password"
+          placeholder="Répétez le mot de passe"
+          autocomplete="new-password"
+          minlength="8" required>
+      </div>
+
+      <button class="submit" type="submit" id="signupButton">
+        Envoyer ma demande
+      </button>
+    </form>
+
+    <p id="loginMessage" class="message" role="status"></p>
 
     <div class="footer">
       ICC Bruxelles • Famille Rehoboth
@@ -159,6 +210,5 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
   <script src="app.js"></script>
-
 </body>
 </html>
